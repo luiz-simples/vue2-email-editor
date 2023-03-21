@@ -1,7 +1,8 @@
-import { createApp } from 'vue/dist/vue.esm-bundler.js';
-
+import Vue from 'vue'
+import VueCompositionAPI from '@vue/composition-api'
+import { createApp } from '@vue/composition-api'
 import EmailEditor from './EmailEditor.vue';
-
+Vue.use(VueCompositionAPI)
 const Components = {
   EmailEditor,
 };

@@ -1,25 +1,27 @@
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-
+import Vue from 'vue'
+import VueCompositionAPI from '@vue/composition-api'
+import VueRouter from 'vue-router'
 import Example from './views/Example.vue';
 import DesignList from './views/DesignList.vue';
 import DesignEdit from './views/DesignEdit.vue';
+import App from './App.vue'
 
-const routes = [
-  { path: '/', component: Example },
-  { path: '/dashboard', component: DesignList },
-  { path: '/dashboard/new', component: DesignEdit },
-  { path: '/dashboard/edit/:designId', component: DesignEdit },
-];
+Vue.use(VueCompositionAPI)
+Vue.use(VueRouter)
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    { path: '/', component: Example },
+    { path: '/dashboard', component: DesignList },
+    { path: '/dashboard/new', component: DesignEdit },
+    { path: '/dashboard/edit/:designId', component: DesignEdit },
+  ]
+})
 
-const app = createApp({});
+Vue.config.productionTip = false
 
-app.use(router);
-app.mount('#app');
-
-export default app;
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount('#app')
